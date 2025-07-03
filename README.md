@@ -1,0 +1,1 @@
+Configuración necesaria para desplegar FileBrowser mediante Docker Compose, con el fin de proporcionar una interfaz web de administración de archivos segura y eficiente en un entorno de red local o servidor dedicado.
