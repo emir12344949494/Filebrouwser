@@ -1,0 +1,17 @@
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:s6
+    container_name: filebrowser
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - /:/data                        # Acceso total al sistema
+      - ./fb-config:/config            # Carpeta persistente para config
+    working_dir: /config               # Aquí se guarda el filebrowser.db
+    entrypoint: >
+      sh -c "
+      filebrowser config init || true &&
+      filebrowser users add gestor01 12345678 --perm.admin || true &&
+      filebrowser -r /data -p 80
+      "
